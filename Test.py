@@ -15,8 +15,10 @@ def Show_Backbone():
     for data in Datas:
         contents.append(data)
     return contents
+
 def Show():
-    print(Show_Backbone())
+    for i in Show_Backbone():
+        print(i)
 
 def Test():
     datas = Show_Backbone()

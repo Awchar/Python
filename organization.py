@@ -42,6 +42,7 @@ class DataBase:
                     return True
 
     def All(self):
+        c.execute("DELETE Alls")
         print('Creating DataBase.')
         for i in tqdm.tqdm(self.Files):
             filename = i.split('/')[-1]
@@ -51,8 +52,8 @@ class DataBase:
         conn.commit()
         print('DataBase Complete.')
 
-
     def Music(self):
+        c.execute("DELETE FROM MUSIC")
         print('Creating Music DataBase')
         for i in tqdm.tqdm(self.Files):
             tag = TinyTag.get(i)
