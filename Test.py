@@ -33,6 +33,12 @@ def Test():
         else:
             print(f'Your Ans: {ans} Is Wrong.\nCorrect Ans: {i[1]}')
 
+def Present(value):
+    datas = Show_Backbone()
+    for i in datas:
+        if i[1] == value:
+            return True
+            
 def Main():
     while True:
         print('Action: \n1.SHOW\n2.INSERT\n3.TEST')
@@ -45,7 +51,10 @@ def Main():
         elif command == '2':
             name = input('PUT NAME: ')
             number = input("PUT NUMBER: ")
-            Insert(name,number)
+            if Present(number) == True:
+                print('Entry Already Exists.')
+            else:
+                Insert(name,number)
         elif command == '3':
             Test()
 
