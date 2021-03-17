@@ -38,9 +38,9 @@ def Test():
             print(f'Your Ans: {ans} Is Wrong.\nCorrect Ans: {i[1]}\n')
             wrong_ans +=1
     print('\nYour Right Ans {} of {}'.format(right_ans,total))
-    print("\nYour Wrong Ans {} of {}".format(wrong_ans,total))
+    print("Your Wrong Ans {} of {}".format(wrong_ans,total))
     percentage = (right_ans*100)/total
-    print('Your Percentage {}\n'.format(percentage))
+    print('\nYour Percentage {}\n'.format(percentage))
 
 
 def Present(value):
