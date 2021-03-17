@@ -22,16 +22,26 @@ def Show():
 
 def Test():
     datas = Show_Backbone()
-    datas = random.sample(datas,len(datas))
+    total = len(datas)
+    datas = random.sample(datas,total)
+    right_ans = 0
+    wrong_ans = 0
     for i in datas:
-        print("ID: {}".format(i[0]))
+        print("ID: {}".format(i[0]))    
         ans = input("Ans: ")
         if ans in ('q','quit','exit'):
             break
         elif ans == i[1]:
-            print(f'Your Ans: {ans} Is Correct.')
+            print(f'Your Ans: {ans} Is Correct.\n')
+            right_ans +=1
         else:
-            print(f'Your Ans: {ans} Is Wrong.\nCorrect Ans: {i[1]}')
+            print(f'Your Ans: {ans} Is Wrong.\nCorrect Ans: {i[1]}\n')
+            wrong_ans +=1
+    print('\nYour Right Ans {} of {}'.format(right_ans,total))
+    print("\nYour Wrong Ans {} of {}".format(wrong_ans,total))
+    percentage = (right_ans*100)/total
+    print('Your Percentage {}\n'.format(percentage))
+
 
 def Present(value):
     datas = Show_Backbone()

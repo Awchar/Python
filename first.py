@@ -148,20 +148,6 @@ class Backbone:
 
 
 
-    def Create_Folder():
-        Backbone.All()
-        f = open('Data/All.txt','r')
-        for i in tqdm.tqdm(f,leave=False):
-            folder = os.path.join(main_path,i.rstrip('\n'))
-            #print(folder)
-            if os.path.isdir(folder):
-                pass
-            else:
-                try:
-                    os.mkdir(folder)
-                    print(f'{folder}\nFolder Create Succesfull')
-                except Exception as e:
-                    pass
 
 
 
