@@ -51,7 +51,7 @@ class Action:
 
 
     def Move(self):
-        Backbone.Create_Folder()
+        Backbone.All()
         for i in tqdm.tqdm(self.files):
             if i.endswith(('mp4','mkv','avi')):
                 dst_path = Backbone.Destination(i)
@@ -110,8 +110,11 @@ class Backbone:
                 if fnmatch.fnmatch(File,'*'+show+'*'):
                     pattern = r"Season \b[0-9]+"
                     subdir = re.search(pattern,File)
-                    #print(subdir.group())
-                    dst = os.path.join(i,os.path.join(subdir.group(),name))
+                    if bool(subdir) == True:
+                        #print(subdir.group())
+                        dst = os.path.join(i,os.path.join(subdir.group(),name))
+                    else:
+                        dst = os.path.join(i,name)
         elif File.endswith('mp3'):
             tag = TinyTag.get(File)
             if tag.album == None:

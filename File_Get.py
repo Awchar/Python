@@ -1,3 +1,4 @@
+import os
 import time
 import ftplib
 import sqlite3
@@ -5,6 +6,8 @@ from tqdm import tqdm
 
 conn = sqlite3.connect('Data/All.db')
 c = conn.cursor()
+
+main_path = '/media/angad/WD/Other Stuff'
 
 ftp = ftplib.FTP()
 ftp.encoding='utf-8'
@@ -60,6 +63,7 @@ def Download(File):
     ftp.login('angad','266423')
     # Check if the latest build in the local path, if not download it.
     filename = File.split('/')[-1]
+    filename = os.path.join(main_path,filename)
     bufsize=1024
     fp=open(filename,'wb')
     total=ftp.size(File)
@@ -67,7 +71,7 @@ def Download(File):
     def bar(data):
         fp.write(data)
         pbar.update(len(data))
-    print(time.ctime(),'\nBegin to download: %s'%filename)
+    print('\nBegin to download: %s'%filename)
     ftp.retrbinary('RETR '+File,bar,bufsize)
     pbar.close()
     fp.close()
@@ -85,7 +89,7 @@ def New_File():
 
 
 def All_Download():
-    for i in tqdm(New_File()):
+    for i in tqdm(New_File(),leave=False):
         Download(i)
         size = ftp.size(i)
         ext = i.split('.')[-1]
