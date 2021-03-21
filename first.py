@@ -153,8 +153,3 @@ class Backbone:
 
 
 
-
-files = File(('mp4','mkv','avi'))
-files.Organize(organize=False)
-#action = Action(files.Organize(organize=False))
-#action.Move()

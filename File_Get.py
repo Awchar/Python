@@ -71,7 +71,7 @@ def Download(File):
     def bar(data):
         fp.write(data)
         pbar.update(len(data))
-    print('\nBegin to download: %s'%filename)
+    print('\nBegin to download: %s'%filename,end='\r')
     ftp.retrbinary('RETR '+File,bar,bufsize)
     pbar.close()
     fp.close()
