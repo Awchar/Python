@@ -15,7 +15,7 @@ class File:
 
 
     def All(self):
-        print('Loading All Files....')
+        print('Loading All Files ....')
         all_files = []
         for root,dirs,files in os.walk(main_path):
             for filename in files:
@@ -155,5 +155,6 @@ class Backbone:
 
 
 files = File(('mp4','mkv','avi'))
-action = Action(files.Organize(organize=False))
-action.Move()
+files.Organize(organize=False)
+#action = Action(files.Organize(organize=False))
+#action.Move()
