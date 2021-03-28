@@ -4,8 +4,11 @@ import re
 from tinytag import TinyTag
 import shutil
 import tqdm
+import json
 
 main_path = '/media/angad/WD'
+json_file = open('Data/Data.json','r')
+json_data = json.load(json_file)
 
 
 class File:
@@ -53,7 +56,7 @@ class Action:
     def Move(self):
         Backbone.All()
         for i in tqdm.tqdm(self.files):
-            if i.endswith(('mp4','mkv','avi')):
+            if i.endswith(tuple(json_data['Video'])):
                 dst_path = Backbone.Destination(i)
                 if dst_path == []:
                     pass
@@ -61,20 +64,48 @@ class Action:
                     #print(dst_path)
                     print(i.split('/')[-1])
                     dst_path = os.path.join(main_path,dst_path)
-                    try:
-                        #print(dst_path)
-                        shutil.move(i,dst_path)
-                    except FileNotFoundError as error:
-                        folder = dst_path.split('/')[0:-1]
-                        folder = '/'.join(folder)
-                        print(f"{folder} Folder Created.")
-                        os.mkdir(folder)
+                    if os.path.isfile(dst_path):
+                        print('File Already Exists')
+                    else:
                         try:
+                            #print(dst_path)
                             shutil.move(i,dst_path)
-                        except Exception as d:
+                        except FileNotFoundError as error:
+                            folder = dst_path.split('/')[0:-1]
+                            folder = '/'.join(folder)
+                            print(f"{folder} Folder Created.")
+                            os.mkdir(folder)
+                            try:
+                                shutil.move(i,dst_path)
+                            except Exception as d:
+                                pass
+                        except Exception as e:
                             pass
-                    except Exception as e:
-                        pass
+            elif i.endswith(tuple(json_data['Music'])):
+                dst_path = Backbone.Destination(i)
+                if dst_path  == []:
+                    pass
+                else:
+                    print(i.split('/')[-1])
+                    dst_path = os.path.join(main_path,dst_path)
+                    if os.path.isfile(dst_path):
+                        print('File Already Exists : ',i.split('/')[-1])
+                    else:
+                        try:
+                            #print(dst_path)
+                            shutil.move(i,dst_path)
+                        except FileNotFoundError as error:
+                            folder = dst_path.split('/')[0:-1]
+                            folder = '/'.join(folder)
+                            print(f"{folder} Folder Created.")
+                            os.makedirs(folder)
+                            try:
+                                shutil.move(i,dst_path)
+                            except Exception as d:
+                                pass
+                        except Exception as e:
+                            pass
+                        
     
 
     def Check(self):
@@ -103,7 +134,7 @@ class Backbone:
     def Destination(File):
         name = File.split('/')[-1]
         dst = []
-        if File.endswith(('mp4','mkv','avi')):
+        if File.endswith(tuple(json_data)):
             All_Content = Backbone.All_Text('All')
             for i in All_Content:
                 show = i.split('/')[-1]
@@ -115,7 +146,7 @@ class Backbone:
                         dst = os.path.join(i,os.path.join(subdir.group(),name))
                     else:
                         dst = os.path.join(i,name)
-        elif File.endswith('mp3'):
+        elif File.endswith(tuple(json_data)):
             tag = TinyTag.get(File)
             if tag.album == None:
                 return False

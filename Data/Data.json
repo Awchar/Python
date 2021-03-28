@@ -1,0 +1,6 @@
+{
+    "Music":["mp3","wav"],
+    "Video":["mkv","mp4","avi"],
+    "Image":["RAW","jpg","psd","jpeg","png","tiff"],
+    "Compress":["zip","rar","tar.gz","tar.gz2"]
+}
