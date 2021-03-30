@@ -1,6 +1,30 @@
 {
-    "Music":["mp3","wav"],
-    "Video":["mkv","mp4","avi"],
-    "Image":["RAW","jpg","psd","jpeg","png","tiff"],
-    "Compress":["zip","rar","tar.gz","tar.gz2"]
+    "Music": [
+        "mp3",
+        "wav"
+    ],
+    "Video": [
+        "mkv",
+        "mp4",
+        "avi"
+    ],
+    "Image": [
+        "raw",
+        "jpg",
+        "psd",
+        "jpeg",
+        "png",
+        "tiff"
+    ],
+    "Compress": [
+        "zip",
+        "rar",
+        "tar.gz",
+        "tar.gz2"
+    ],
+    "Music Count": 245,
+    "Video Count": 5535,
+    "Image Count": 352367,
+    "Compress Count": 43,
+    "Other Count": 19754
 }

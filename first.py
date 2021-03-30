@@ -134,12 +134,13 @@ class Backbone:
     def Destination(File):
         name = File.split('/')[-1]
         dst = []
-        if File.endswith(tuple(json_data)):
+        if File.endswith(tuple(json_data['Video'])):
             All_Content = Backbone.All_Text('All')
             for i in All_Content:
                 show = i.split('/')[-1]
+                #print(show)
                 if fnmatch.fnmatch(File,'*'+show+'*'):
-                    pattern = r"Season \b[0-9]+"
+                    pattern = r"(Season \b[0-9]+|S[0-9]+)"
                     subdir = re.search(pattern,File)
                     if bool(subdir) == True:
                         #print(subdir.group())
@@ -179,8 +180,6 @@ class Backbone:
         for h in alls:
             file_all.write(h+'\n')
         file_all.close()
-
-
 
 
 
