@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/usr/bin/python3.8",
+    "python.pythonPath": "C:\\Users\\Angad\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
     "jupyter.jupyterServerType": "local",
     "python.testing.unittestArgs": [
         "-v",

@@ -8,8 +8,16 @@ c = conn.cursor()
 c.execute('CREATE TABLE IF NOT EXISTS Alls(Name TEXT,Extension TEXt,Size INT)')
 c.execute('CREATE TABLE IF NOT EXISTS MUSIC(Year TEXT,Album TEXT,Title TEXT,Size INT)')
 
-class Files:
+def All_Drive():
+    drive = []
+    for i in range(65,91):
+        drive_letter = chr(i)+':\\'
+        if os.path.isdir(drive_letter):
+            drive.append(drive_letter)
+    return drive
+        
 
+class Files:
 
     def __init__(self,ext):
         self.ext = ext
@@ -18,12 +26,16 @@ class Files:
     def All(self):
         print('Loading Files.')
         content = []
-        for root,dirs,files in os.walk('/media/angad/WD'):
-            for filename in files:
-                if filename.endswith(self.ext):
-                    path = os.path.join(root,filename)
-                    content.append(path)
-                    #print(path)
+        for i in All_Drive():
+            if i == 'C:\\':
+                pass
+            else:
+                for root,dirs,files in os.walk(i):
+                    for filename in files:
+                        if filename.endswith(self.ext):
+                            path = os.path.join(root,filename)
+                            content.append(path)
+                            #print(path)
         return content
         print('File Loading Compelete.')
 
@@ -56,7 +68,10 @@ class DataBase:
         c.execute("DELETE FROM MUSIC")
         print('Creating Music DataBase')
         for i in tqdm.tqdm(self.Files):
-            tag = TinyTag.get(i)
+            try:
+                tag = TinyTag.get(i)
+            except Exception as e:
+                pass
             year = tag.year
             album = tag.album
             size = tag.filesize

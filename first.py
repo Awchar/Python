@@ -6,7 +6,7 @@ import shutil
 import tqdm
 import json
 
-main_path = '/media/angad/WD'
+main_path = 'D:'
 json_file = open('Data/Data.json','r')
 json_data = json.load(json_file)
 

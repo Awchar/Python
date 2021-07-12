@@ -7,11 +7,11 @@ from tqdm import tqdm
 conn = sqlite3.connect('Data/All.db')
 c = conn.cursor()
 
-main_path = '/media/angad/WD/Other Stuff'
+main_path = 'D:\Other Stuff'
 
 ftp = ftplib.FTP()
 ftp.encoding='utf-8'
-IP = '192.168.0.100'
+IP = '192.168.0.101'
 
 def Raw_Links():
     ftp.connect(IP,2121)
